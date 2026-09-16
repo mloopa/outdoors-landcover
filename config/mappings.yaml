@@ -1,0 +1,192 @@
+# OSM → Outdoors landcover feature mappings (version-controlled).
+# Priority: lower number wins when a feature matches multiple classes.
+version: 1
+attribution: "© OpenStreetMap contributors"
+licence: "ODbL 1.0"
+
+priority:
+  beach: 10
+  sand: 20
+  marshland: 30
+  park: 40
+  woodland: 50
+  orchard: 55
+  vineyard: 56
+  crop: 60
+  grass: 70
+
+features:
+  beach:
+    geometry_types: [Polygon, MultiPolygon]
+    zoom_min: 11
+    output_attributes: [name]
+    rules:
+      - match: { natural: beach }
+        retain: [name]
+
+  sand:
+    geometry_types: [Polygon, MultiPolygon]
+    zoom_min: 11
+    output_attributes: [natural]
+    rules:
+      - match: { natural: sand }
+        set: { natural: sand }
+
+  marshland:
+    geometry_types: [Polygon, MultiPolygon]
+    zoom_profiles: [z8_12, z12_plus]
+    output_attributes: [type, area_km2]
+    point_layer: marshland_point
+    point_zoom_min: 11
+    # Point emission: centroids of polygons above min_area_km2_for_point
+    min_area_km2_for_point: 0.05
+    rules:
+      - match: { natural: wetland }
+        set: { type: wetland }
+      - match: { wetland: marsh }
+        set: { type: wetland }
+      - match: { wetland: swamp }
+        set: { type: wetland }
+      - match: { wetland: bog }
+        set: { type: wetland }
+      - match: { wetland: fen }
+        set: { type: wetland }
+
+  park:
+    geometry_types: [Polygon, MultiPolygon]
+    zoom_min: 11
+    output_attributes: [landuse]
+    rules:
+      - match: { leisure: park }
+        set: { landuse: park }
+      - match: { leisure: nature_reserve }
+        set: { landuse: park }
+      - match: { landuse: recreation_ground }
+        set: { landuse: park }
+      - match: { boundary: national_park }
+        set: { landuse: park }
+
+  orchard:
+    geometry_types: [Polygon, MultiPolygon]
+    zoom_min: 11
+    output_attributes: [landuse, name]
+    rules:
+      - match: { landuse: orchard }
+        set: { landuse: orchard }
+        retain: [name]
+
+  vineyard:
+    geometry_types: [Polygon, MultiPolygon]
+    zoom_min: 11
+    output_attributes: [landuse, name]
+    rules:
+      - match: { landuse: vineyard }
+        set: { landuse: vineyard }
+        retain: [name]
+
+  crop:
+    geometry_types: [Polygon, MultiPolygon]
+    zoom_profiles: [z0_9]
+    output_attributes: [landcover]
+    # Arable/farmland only. Orchard and vineyard are separate layers.
+    # plant_nursery remains excluded (not mapped to crop or a dedicated layer).
+    rules:
+      - match: { landuse: farmland }
+        set: { landcover: crop }
+      - match: { landuse: farm }
+        set: { landcover: crop }
+      - match: { landuse: cropland }
+        set: { landcover: crop }
+
+  grass:
+    geometry_types: [Polygon, MultiPolygon]
+    zoom_profiles: [z0_9]
+    output_attributes: [landcover]
+    rules:
+      - match: { landuse: grass }
+        set: { landcover: grass }
+      - match: { landuse: meadow }
+        set: { landcover: grass }
+      - match: { natural: grassland }
+        set: { landcover: grass }
+      - match: { landuse: village_green }
+        set: { landcover: grass }
+
+  woodland:
+    geometry_types: [Polygon, MultiPolygon]
+    zoom_profiles: [z8_11, z11_14, z14_plus]
+    output_attributes: [forest_type, name]
+    point_layer: woodland_point
+    point_zoom_min: 11
+    # Only emit points for tagged wood/forest *nodes*, never natural=tree.
+    accept_point_tags: true
+    min_area_km2_for_point: 0.1
+    rules:
+      - match: { natural: wood }
+        derive_forest_type: true
+        retain: [name]
+      - match: { landuse: forest }
+        derive_forest_type: true
+        retain: [name]
+
+forest_type:
+  # Evaluation order: first confident match wins.
+  coniferous:
+    any_of:
+      - { leaf_type: needleleaved }
+      - { "wood:type": coniferous }
+      - { forest_type: coniferous }
+      - { leaf_cycle: evergreen, leaf_type: needleleaved }
+    species_contains:
+      - pine
+      - pinus
+      - spruce
+      - picea
+      - fir
+      - abies
+      - larch
+      - larix
+      - cedar
+      - cedrus
+      - juniper
+      - juniperus
+      - cypress
+      - cupressus
+  non_coniferous:
+    any_of:
+      - { leaf_type: broadleaved }
+      - { "wood:type": broadleaved }
+      - { forest_type: deciduous }
+      - { forest_type: broadleaved }
+      - { leaf_cycle: deciduous }
+    species_contains:
+      - oak
+      - quercus
+      - beech
+      - fagus
+      - birch
+      - betula
+      - maple
+      - acer
+      - ash
+      - fraxinus
+      - elm
+      - ulmus
+      - willow
+      - salix
+      - poplar
+      - populus
+  fallback: unknown
+
+exclusions:
+  # Tags that prevent a feature from being classified as crop/grass even if
+  # a vegetation rule would otherwise match.
+  never_crop_or_grass_if:
+    - { natural: beach }
+    - { natural: sand }
+    - { natural: wetland }
+    - { leisure: park }
+    - { landuse: forest }
+    - { natural: wood }
+    - { landuse: orchard }
+    - { landuse: vineyard }

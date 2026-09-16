@@ -1,0 +1,160 @@
+{
+  "type": "FeatureCollection",
+  "name": "Poland landcover example fixture (synthetic, offline)",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "pl1001",
+        "natural": "beach",
+        "name": "Plaża w Sopocie"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[18.55, 54.44], [18.56, 54.44], [18.56, 54.45], [18.55, 54.45], [18.55, 54.44]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "pl1002",
+        "natural": "sand"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[18.57, 54.44], [18.58, 54.44], [18.58, 54.45], [18.57, 54.45], [18.57, 54.44]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "pl1003",
+        "natural": "wetland",
+        "wetland": "marsh",
+        "name": "Biebrza marsh"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[22.5, 53.4], [22.7, 53.4], [22.7, 53.6], [22.5, 53.6], [22.5, 53.4]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "pl1004",
+        "leisure": "park",
+        "name": "Łazienki Królewskie"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[21.02, 52.21], [21.04, 52.21], [21.04, 52.22], [21.02, 52.22], [21.02, 52.21]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "pl1005",
+        "landuse": "farmland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[17.0, 52.0], [17.2, 52.0], [17.2, 52.2], [17.0, 52.2], [17.0, 52.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "pl1006",
+        "landuse": "meadow"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[16.8, 52.0], [17.0, 52.0], [17.0, 52.2], [16.8, 52.2], [16.8, 52.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "pl1007",
+        "natural": "wood",
+        "leaf_type": "needleleaved",
+        "name": "Bory Tucholskie"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[17.8, 53.7], [18.1, 53.7], [18.1, 53.95], [17.8, 53.95], [17.8, 53.7]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "pl1008",
+        "landuse": "forest",
+        "leaf_type": "broadleaved",
+        "name": "Puszcza Białowieska"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[23.7, 52.6], [24.0, 52.6], [24.0, 52.85], [23.7, 52.85], [23.7, 52.6]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "pl1009",
+        "landuse": "forest"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[19.0, 50.0], [19.2, 50.0], [19.2, 50.2], [19.0, 50.2], [19.0, 50.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "pl1010",
+        "natural": "wood"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [19.95, 50.06]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "pl1011",
+        "landuse": "orchard",
+        "name": "Sady Grójeckie"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[20.8, 51.8], [20.9, 51.8], [20.9, 51.9], [20.8, 51.9], [20.8, 51.8]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "pl1012",
+        "landuse": "vineyard",
+        "name": "Winnica Srebrna Góra"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[16.95, 51.05], [17.0, 51.05], [17.0, 51.08], [16.95, 51.08], [16.95, 51.05]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "pl1013",
+        "boundary": "national_park",
+        "name": "Tatrzański Park Narodowy"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[19.85, 49.18], [20.15, 49.18], [20.15, 49.3], [19.85, 49.3], [19.85, 49.18]]]
+      }
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+# Country / ISO-3166-1 alpha-2 → Geofabrik extract path(s).
+# Multiple extracts are used where Geofabrik splits a country across regions.
+version: 1
+provider: geofabrik
+base_url: https://download.geofabrik.de
+
+# Global mode processes these top-level continental/regional extracts.
+# Using continents avoids downloading every country twice and reduces
+# boundary duplication vs overlapping country extracts.
+global_partitions:
+  - africa
+  - antarctica
+  - asia
+  - australia-oceania
+  - central-america
+  - europe
+  - north-america
+  - south-america
+
+countries:
+  AD: { name: Andorra, extracts: [europe/andorra] }
+  AE: { name: United Arab Emirates, extracts: [asia/gcc-states] }
+  AF: { name: Afghanistan, extracts: [asia/afghanistan] }
+  AL: { name: Albania, extracts: [europe/albania] }
+  AM: { name: Armenia, extracts: [asia/armenia] }
+  AO: { name: Angola, extracts: [africa/angola] }
+  AR: { name: Argentina, extracts: [south-america/argentina] }
+  AT: { name: Austria, extracts: [europe/austria] }
+  AU: { name: Australia, extracts: [australia-oceania/australia] }
+  AZ: { name: Azerbaijan, extracts: [asia/azerbaijan] }
+  BA: { name: Bosnia and Herzegovina, extracts: [europe/bosnia-herzegovina] }
+  BD: { name: Bangladesh, extracts: [asia/bangladesh] }
+  BE: { name: Belgium, extracts: [europe/belgium] }
+  BG: { name: Bulgaria, extracts: [europe/bulgaria] }
+  BO: { name: Bolivia, extracts: [south-america/bolivia] }
+  BR: { name: Brazil, extracts: [south-america/brazil] }
+  BY: { name: Belarus, extracts: [europe/belarus] }
+  CA: { name: Canada, extracts: [north-america/canada] }
+  CH: { name: Switzerland, extracts: [europe/switzerland] }
+  CL: { name: Chile, extracts: [south-america/chile] }
+  CN: { name: China, extracts: [asia/china] }
+  CO: { name: Colombia, extracts: [south-america/colombia] }
+  CZ: { name: Czech Republic, extracts: [europe/czech-republic] }
+  DE: { name: Germany, extracts: [europe/germany] }
+  DK: { name: Denmark, extracts: [europe/denmark] }
+  DZ: { name: Algeria, extracts: [africa/algeria] }
+  EC: { name: Ecuador, extracts: [south-america/ecuador] }
+  EE: { name: Estonia, extracts: [europe/estonia] }
+  EG: { name: Egypt, extracts: [africa/egypt] }
+  ES: { name: Spain, extracts: [europe/spain] }
+  ET: { name: Ethiopia, extracts: [africa/ethiopia] }
+  FI: { name: Finland, extracts: [europe/finland] }
+  FR:
+    name: France
+    extracts:
+      - europe/france
+      # Overseas departments available as separate Geofabrik extracts when needed
+  GB: { name: United Kingdom, extracts: [europe/great-britain] }
+  GE: { name: Georgia, extracts: [asia/georgia] }
+  GH: { name: Ghana, extracts: [africa/ghana] }
+  GR: { name: Greece, extracts: [europe/greece] }
+  HR: { name: Croatia, extracts: [europe/croatia] }
+  HU: { name: Hungary, extracts: [europe/hungary] }
+  ID: { name: Indonesia, extracts: [asia/indonesia] }
+  IE: { name: Ireland, extracts: [europe/ireland-and-northern-ireland] }
+  IL: { name: Israel, extracts: [asia/israel-and-palestine] }
+  IN: { name: India, extracts: [asia/india] }
+  IQ: { name: Iraq, extracts: [asia/iraq] }
+  IR: { name: Iran, extracts: [asia/iran] }
+  IS: { name: Iceland, extracts: [europe/iceland] }
+  IT: { name: Italy, extracts: [europe/italy] }
+  JP: { name: Japan, extracts: [asia/japan] }
+  KE: { name: Kenya, extracts: [africa/kenya] }
+  KG: { name: Kyrgyzstan, extracts: [asia/kyrgyzstan] }
+  KH: { name: Cambodia, extracts: [asia/cambodia] }
+  KR: { name: South Korea, extracts: [asia/south-korea] }
+  KZ: { name: Kazakhstan, extracts: [asia/kazakhstan] }
+  LT: { name: Lithuania, extracts: [europe/lithuania] }
+  LU: { name: Luxembourg, extracts: [europe/luxembourg] }
+  LV: { name: Latvia, extracts: [europe/latvia] }
+  MA: { name: Morocco, extracts: [africa/morocco] }
+  MD: { name: Moldova, extracts: [europe/moldova] }
+  ME: { name: Montenegro, extracts: [europe/montenegro] }
+  MK: { name: North Macedonia, extracts: [europe/macedonia] }
+  MM: { name: Myanmar, extracts: [asia/myanmar] }
+  MN: { name: Mongolia, extracts: [asia/mongolia] }
+  MX: { name: Mexico, extracts: [north-america/mexico] }
+  MY: { name: Malaysia, extracts: [asia/malaysia-singapore-brunei] }
+  NG: { name: Nigeria, extracts: [africa/nigeria] }
+  NL: { name: Netherlands, extracts: [europe/netherlands] }
+  NO: { name: Norway, extracts: [europe/norway] }
+  NP: { name: Nepal, extracts: [asia/nepal] }
+  NZ: { name: New Zealand, extracts: [australia-oceania/new-zealand] }
+  PE: { name: Peru, extracts: [south-america/peru] }
+  PH: { name: Philippines, extracts: [asia/philippines] }
+  PK: { name: Pakistan, extracts: [asia/pakistan] }
+  PL: { name: Poland, extracts: [europe/poland] }
+  PT: { name: Portugal, extracts: [europe/portugal] }
+  PY: { name: Paraguay, extracts: [south-america/paraguay] }
+  RO: { name: Romania, extracts: [europe/romania] }
+  RS: { name: Serbia, extracts: [europe/serbia] }
+  RU:
+    name: Russia
+    # Geofabrik publishes Russia as multiple regional extracts under russia/
+    extracts:
+      - russia/central-fed-district
+      - russia/crimean-fed-district
+      - russia/far-eastern-fed-district
+      - russia/kaliningrad
+      - russia/north-caucasus-fed-district
+      - russia/northwestern-fed-district
+      - russia/siberian-fed-district
+      - russia/south-fed-district
+      - russia/ural-fed-district
+      - russia/volga-fed-district
+  SA: { name: Saudi Arabia, extracts: [asia/gcc-states] }
+  SE: { name: Sweden, extracts: [europe/sweden] }
+  SI: { name: Slovenia, extracts: [europe/slovenia] }
+  SK: { name: Slovakia, extracts: [europe/slovakia] }
+  TH: { name: Thailand, extracts: [asia/thailand] }
+  TJ: { name: Tajikistan, extracts: [asia/tajikistan] }
+  TM: { name: Turkmenistan, extracts: [asia/turkmenistan] }
+  TR: { name: Turkey, extracts: [europe/turkey] }
+  TZ: { name: Tanzania, extracts: [africa/tanzania] }
+  UA: { name: Ukraine, extracts: [europe/ukraine] }
+  US: { name: United States, extracts: [north-america/us] }
+  UY: { name: Uruguay, extracts: [south-america/uruguay] }
+  UZ: { name: Uzbekistan, extracts: [asia/uzbekistan] }
+  VE: { name: Venezuela, extracts: [south-america/venezuela] }
+  VN: { name: Vietnam, extracts: [asia/vietnam] }
+  ZA: { name: South Africa, extracts: [africa/south-africa] }
+  ZM: { name: Zambia, extracts: [africa/zambia] }
+  ZW: { name: Zimbabwe, extracts: [africa/zimbabwe] }
+
+# Common aliases → ISO codes
+aliases:
+  ireland: IE
+  eire: IE
+  poland: PL
+  polska: PL
+  "united kingdom": GB
+  uk: GB
+  "great britain": GB
+  britain: GB
+  usa: US
+  "united states": US
+  "united states of america": US
+  germany: DE
+  deutschland: DE
+  france: FR
+  spain: ES
+  italy: IT
+  netherlands: NL
+  holland: NL
+  czechia: CZ
+  "czech republic": CZ
+  russia: RU
+  "russian federation": RU
+  "south korea": KR
+  korea: KR

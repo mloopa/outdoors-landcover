@@ -1,0 +1,13 @@
+# Example runtime settings for outdoors-landcover.
+# Override via CLI flags or environment variables (OUTDOORS_*).
+
+cache_dir: ./cache/osm
+temp_dir: ./tmp
+output_dir: ./outputs/landcover
+concurrency: 2
+provider: geofabrik
+base_url: https://download.geofabrik.de
+mappings_path: ./config/mappings.yaml
+generalisation_path: ./config/generalisation.yaml
+countries_path: ./config/countries.yaml
+log_level: INFO

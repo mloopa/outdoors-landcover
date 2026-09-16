@@ -1,0 +1,81 @@
+# Copernicus Land Monitoring Service (CLMS) High Resolution Layers.
+# Not CORINE/CLC — pan-European HRL Vegetated Land Cover Characteristics at 10 m.
+version: 1
+enabled: true
+native_resolution_m: 10
+year: 2021
+# Resample before polygonize (still finer than OSM z0–9 / z8–11 generalisation).
+polygonize_resolution_m: 20
+attribution: "© European Union, Copernicus Land Monitoring Service"
+licence: "Copernicus Land Monitoring Service (free use with attribution)"
+catalogue_url: https://catalogue.dataspace.copernicus.eu/odata/v1
+token_url: https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token
+download_url: https://download.dataspace.copernicus.eu/odata/v1
+
+# CLMS HRL is pan-European (EEA38 + UK). Used when extract paths are under europe/.
+europe_bbox: [-24.6, 34.5, 45.0, 71.6]
+
+layers:
+  woodland:
+    outdoors_class: woodland
+    dataset_identifier: clms_vlcc_forest-type_europe_10m_3yearly_v1
+    nodata: [0, 254, 255]
+    classes:
+      1: { forest_type: non_coniferous }
+      2: { forest_type: coniferous }
+
+  grass:
+    outdoors_class: grass
+    dataset_identifier: clms_vlcc_grassland_europe_10m_yearly_v1
+    nodata: [0, 254, 255]
+    classes:
+      1: { landcover: grass }
+
+  crop:
+    outdoors_class: crop
+    dataset_identifier: clms_vlcc_crop-types_europe_10m_yearly_v1
+    nodata: [0, 254, 255, 65535]
+    # Any other CTY code (wheat, maize, grapes, olives, …) → crop at low zoom.
+    default_attrs: { landcover: crop }
+
+# WGS84 [west, south, east, north] used to select intersecting 100 km HRL tiles.
+country_bboxes:
+  AD: [1.41, 42.43, 1.79, 42.66]
+  AL: [19.26, 39.64, 21.06, 42.67]
+  AT: [9.53, 46.37, 17.16, 49.02]
+  BA: [15.74, 42.56, 19.62, 45.28]
+  BE: [2.54, 49.50, 6.40, 51.51]
+  BG: [22.36, 41.24, 28.61, 44.24]
+  BY: [23.18, 51.26, 32.77, 56.17]
+  CH: [5.96, 45.82, 10.49, 47.81]
+  CZ: [12.09, 48.55, 18.86, 51.06]
+  DE: [5.87, 47.27, 15.04, 55.06]
+  DK: [8.07, 54.56, 15.20, 57.75]
+  EE: [21.76, 57.51, 28.21, 59.69]
+  ES: [-9.39, 35.95, 4.33, 43.79]
+  FI: [20.55, 59.81, 31.59, 70.09]
+  FR: [-5.14, 41.33, 9.56, 51.09]
+  GB: [-8.62, 49.86, 1.77, 60.86]
+  GR: [19.37, 34.80, 29.65, 41.75]
+  HR: [13.49, 42.37, 19.45, 46.55]
+  HU: [16.11, 45.74, 22.90, 48.59]
+  IE: [-10.66, 51.39, -5.43, 55.43]
+  IS: [-24.54, 63.39, -13.50, 66.54]
+  IT: [6.63, 36.62, 18.52, 47.09]
+  LT: [20.94, 53.90, 26.84, 56.45]
+  LU: [5.74, 49.45, 6.53, 50.18]
+  LV: [20.97, 55.67, 28.24, 58.08]
+  MD: [26.62, 45.47, 30.16, 48.49]
+  ME: [18.43, 41.85, 20.36, 43.56]
+  MK: [20.45, 40.85, 23.03, 42.37]
+  NL: [3.36, 50.75, 7.23, 53.55]
+  NO: [4.64, 57.96, 31.29, 71.19]
+  PL: [14.12, 49.00, 24.15, 54.84]
+  PT: [-9.53, 36.96, -6.19, 42.15]
+  RO: [20.26, 43.62, 29.74, 48.27]
+  RS: [18.81, 42.23, 23.01, 46.19]
+  SE: [10.96, 55.34, 24.17, 69.06]
+  SI: [13.38, 45.42, 16.61, 46.88]
+  SK: [16.83, 47.73, 22.57, 49.61]
+  TR: [25.67, 35.81, 44.83, 42.10]
+  UA: [22.14, 44.39, 40.23, 52.38]

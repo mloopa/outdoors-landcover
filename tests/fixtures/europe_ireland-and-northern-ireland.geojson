@@ -1,0 +1,166 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1001",
+        "natural": "beach",
+        "name": "Sandy Cove"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-9.0, 53.0], [-8.999, 53.0], [-8.999, 53.001], [-9.0, 53.001], [-9.0, 53.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1002",
+        "natural": "sand"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-9.01, 53.0], [-9.009, 53.0], [-9.009, 53.001], [-9.01, 53.001], [-9.01, 53.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1003",
+        "natural": "wetland",
+        "wetland": "marsh"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-9.02, 53.0], [-9.0, 53.0], [-9.0, 53.02], [-9.02, 53.02], [-9.02, 53.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1004",
+        "leisure": "park",
+        "name": "Central Park"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-9.03, 53.0], [-9.029, 53.0], [-9.029, 53.001], [-9.03, 53.001], [-9.03, 53.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1005",
+        "landuse": "farmland"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-9.1, 53.0], [-9.0, 53.0], [-9.0, 53.1], [-9.1, 53.1], [-9.1, 53.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1006",
+        "landuse": "meadow"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-9.2, 53.0], [-9.1, 53.0], [-9.1, 53.1], [-9.2, 53.1], [-9.2, 53.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1007",
+        "natural": "wood",
+        "leaf_type": "needleleaved",
+        "name": "Pine Forest"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-9.3, 53.0], [-9.2, 53.0], [-9.2, 53.1], [-9.3, 53.1], [-9.3, 53.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1008",
+        "landuse": "forest",
+        "leaf_type": "broadleaved"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-9.4, 53.0], [-9.3, 53.0], [-9.3, 53.1], [-9.4, 53.1], [-9.4, 53.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1009",
+        "landuse": "forest"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-9.5, 53.0], [-9.4, 53.0], [-9.4, 53.1], [-9.5, 53.1], [-9.5, 53.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1010",
+        "natural": "wood"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-9.25, 53.05]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1011",
+        "natural": "tree"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-9.26, 53.05]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1012",
+        "landuse": "orchard"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-9.6, 53.0], [-9.5, 53.0], [-9.5, 53.1], [-9.6, 53.1], [-9.6, 53.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1013",
+        "natural": "beach",
+        "landuse": "grass"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-8.9, 53.0], [-8.899, 53.0], [-8.899, 53.001], [-8.9, 53.001], [-8.9, 53.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1014",
+        "natural": "wood"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[0, 0], [0.00001, 0], [0.00001, 0.00001], [0, 0.00001], [0, 0]]]
+      }
+    }
+  ]
+}

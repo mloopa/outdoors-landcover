@@ -1,0 +1,82 @@
+# Zoom-dependent generalisation profiles for Outdoors landcover layers.
+version: 1
+crs_for_area: EPSG:3857
+output_crs: EPSG:4326
+
+profiles:
+  z0_9:
+    description: "Low-zoom crop/grass — aggressive generalisation"
+    min_area_m2: 500000
+    simplify_tolerance_m: 200
+    dissolve_same_attributes: true
+    repair: true
+
+  z8_11:
+    description: "Mid-zoom woodland"
+    min_area_m2: 50000
+    simplify_tolerance_m: 50
+    dissolve_same_attributes: false
+    repair: true
+
+  z8_12:
+    description: "Mid-zoom marshland"
+    min_area_m2: 25000
+    simplify_tolerance_m: 40
+    dissolve_same_attributes: false
+    repair: true
+
+  z11_14:
+    description: "Detailed woodland"
+    min_area_m2: 2500
+    simplify_tolerance_m: 15
+    dissolve_same_attributes: false
+    repair: true
+
+  z12_plus:
+    description: "Detailed marshland"
+    min_area_m2: 500
+    simplify_tolerance_m: 5
+    dissolve_same_attributes: false
+    repair: true
+
+  z14_plus:
+    description: "Highest-detail woodland"
+    min_area_m2: 100
+    simplify_tolerance_m: 2
+    dissolve_same_attributes: false
+    repair: true
+
+  z11_plus:
+    description: "Beach, sand, park, points from z11"
+    min_area_m2: 200
+    simplify_tolerance_m: 5
+    dissolve_same_attributes: false
+    repair: true
+
+layer_profiles:
+  crop: [z0_9]
+  grass: [z0_9]
+  woodland: [z8_11, z11_14, z14_plus]
+  marshland: [z8_12, z12_plus]
+  beach: [z11_plus]
+  sand: [z11_plus]
+  park: [z11_plus]
+  orchard: [z11_plus]
+  vineyard: [z11_plus]
+  marshland_point: [z11_plus]
+  woodland_point: [z11_plus]
+
+# Vector-tile layer names match the Outdoors logical feature names from the
+# product description (not landcover_* prefixes).
+tile_layer_names:
+  beach: beach
+  sand: sand
+  marshland: marshland
+  marshland_point: marshland_point
+  park: park
+  orchard: orchard
+  vineyard: vineyard
+  crop: crop
+  grass: grass
+  woodland: woodland
+  woodland_point: woodland_point

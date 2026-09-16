@@ -1,0 +1,21 @@
+# Example runtime settings for outdoors-landcover.
+# Override via CLI flags or environment variables (OUTDOORS_*).
+
+cache_dir: ./cache/osm
+temp_dir: ./tmp
+output_dir: ./outputs/landcover
+concurrency: 2
+provider: geofabrik
+base_url: https://download.geofabrik.de
+mappings_path: ./config/mappings.yaml
+generalisation_path: ./config/generalisation.yaml
+countries_path: ./config/countries.yaml
+log_level: INFO
+
+# Copernicus Land Monitoring Service High Resolution Layers (Europe, 10 m).
+# Not CORINE/CLC. Requires CDSE credentials for live download:
+#   OUTDOORS_CDSE_USERNAME / OUTDOORS_CDSE_PASSWORD
+clms_enabled: true
+clms_year: 2021
+# clms_local_root: ./cache/clms
+# clms_path: ./config/clms.yaml
