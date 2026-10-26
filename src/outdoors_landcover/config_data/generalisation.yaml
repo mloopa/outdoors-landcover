@@ -3,26 +3,60 @@ version: 1
 crs_for_area: EPSG:3857
 output_crs: EPSG:4326
 
+# Distances and areas are in crs_for_area units (Web Mercator), so they scale
+# with screen pixels. One 512 px tile pixel ≈ 306 m at z8, 153 m at z9, 76 m at z10.
+#
+# Low-zoom profiles (dissolve_by set) run area generalisation per dissolve group:
+#   union → close gaps < 2*close_gap_m → drop parts thinner than 2*open_width_m
+#   → fill holes < fill_holes_below_m2 → simplify → drop polygons < min_area_m2.
+# dissolve_by: [] merges every feature of the layer; attributes not listed are dropped.
 profiles:
   z0_9:
-    description: "Low-zoom crop/grass — aggressive generalisation"
-    min_area_m2: 500000
-    simplify_tolerance_m: 200
+    description: "Low-zoom crop/grass — dissolved, smoothed"
+    min_area_m2: 8000000
+    simplify_tolerance_m: 150
     dissolve_same_attributes: true
+    dissolve_by: [landcover]
+    close_gap_m: 450
+    open_width_m: 300
+    fill_holes_below_m2: 8000000
+    tile_size_m: 50000
     repair: true
 
-  z8_11:
-    description: "Mid-zoom woodland"
-    min_area_m2: 50000
+  z8_9:
+    description: "Low-zoom woodland — dissolved, smoothed, holes filled"
+    min_area_m2: 8000000
+    simplify_tolerance_m: 120
+    dissolve_same_attributes: false
+    dissolve_by: []
+    close_gap_m: 450
+    open_width_m: 300
+    fill_holes_below_m2: 8000000
+    tile_size_m: 50000
+    repair: true
+
+  z10:
+    description: "Mid-zoom woodland — dissolved, lightly smoothed"
+    min_area_m2: 1000000
     simplify_tolerance_m: 50
     dissolve_same_attributes: false
+    dissolve_by: []
+    close_gap_m: 150
+    open_width_m: 100
+    fill_holes_below_m2: 1000000
+    tile_size_m: 20000
     repair: true
 
   z8_12:
-    description: "Mid-zoom marshland"
-    min_area_m2: 25000
+    description: "Mid-zoom marshland — dissolved per type, lightly smoothed"
+    min_area_m2: 200000
     simplify_tolerance_m: 40
     dissolve_same_attributes: false
+    dissolve_by: [type]
+    close_gap_m: 60
+    open_width_m: 40
+    fill_holes_below_m2: 200000
+    tile_size_m: 20000
     repair: true
 
   z11_14:
@@ -56,7 +90,7 @@ profiles:
 layer_profiles:
   crop: [z0_9]
   grass: [z0_9]
-  woodland: [z8_11, z11_14, z14_plus]
+  woodland: [z8_9, z10, z11_14, z14_plus]
   marshland: [z8_12, z12_plus]
   beach: [z11_plus]
   sand: [z11_plus]

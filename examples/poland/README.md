@@ -38,7 +38,7 @@ Expected GeoPackages under `./outputs/poland/`:
 | `PL__vineyard__z11_plus.gpkg` | `vineyard` |
 | `PL__crop__z0_9.gpkg` | `crop` |
 | `PL__grass__z0_9.gpkg` | `grass` |
-| `PL__woodland__z8_11.gpkg` / `…z11_14` / `…z14_plus` | `woodland` |
+| `PL__woodland__z8_9.gpkg` / `…z10` / `…z11_14` / `…z14_plus` | `woodland` |
 | `PL__woodland_point__z11_plus.gpkg` | `woodland_point` |
 
 Also written: `PL__metadata.json`, `PL__ATTRIBUTION.txt`, `PL__resume.json`.

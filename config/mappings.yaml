@@ -114,7 +114,7 @@ features:
 
   woodland:
     geometry_types: [Polygon, MultiPolygon]
-    zoom_profiles: [z8_11, z11_14, z14_plus]
+    zoom_profiles: [z8_9, z10, z11_14, z14_plus]
     output_attributes: [forest_type, name]
     point_layer: woodland_point
     point_zoom_min: 11

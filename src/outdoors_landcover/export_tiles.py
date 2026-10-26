@@ -14,13 +14,15 @@ from outdoors_landcover.output import unify_gdf
 
 logger = get_logger(__name__)
 
-# tippecanoe zoom ranges per generalisation profile
+# tippecanoe zoom ranges per generalisation profile. Profiles of the same layer
+# must not overlap, otherwise tile-join renders both versions at the shared zoom.
 PROFILE_ZOOM: dict[str, tuple[int, int]] = {
     "z0_9": (0, 9),
-    "z8_11": (8, 11),
-    "z8_12": (8, 12),
-    "z11_14": (11, 14),
-    "z12_plus": (12, 14),
+    "z8_9": (8, 9),
+    "z10": (10, 10),
+    "z8_12": (8, 11),
+    "z11_14": (11, 13),
+    "z12_plus": (12, 16),
     "z14_plus": (14, 16),
     "z11_plus": (11, 16),
 }

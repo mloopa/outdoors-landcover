@@ -59,7 +59,7 @@ def test_europe_bbox_and_country():
 def test_resolution_gate_prefers_clms_at_low_zoom():
     gen = load_generalisation(CONFIG / "generalisation.yaml")
     assert clms_has_better_resolution(gen.profiles["z0_9"], native_resolution_m=10)
-    assert clms_has_better_resolution(gen.profiles["z8_11"], native_resolution_m=10)
+    assert clms_has_better_resolution(gen.profiles["z8_9"], native_resolution_m=10)
     assert clms_has_better_resolution(gen.profiles["z11_14"], native_resolution_m=10)
     assert not clms_has_better_resolution(gen.profiles["z14_plus"], native_resolution_m=10)
     assert not clms_has_better_resolution(gen.profiles["z11_plus"], native_resolution_m=10)
@@ -139,7 +139,7 @@ def test_pipeline_uses_local_clms_for_europe(tmp_path: Path):
     assert "CLC" in meta["clms"]["not"]
     crop_out = next(o for o in meta["outputs"] if o["logical"] == "crop")
     wood_mid = next(
-        o for o in meta["outputs"] if o["logical"] == "woodland" and o["profile"] == "z8_11"
+        o for o in meta["outputs"] if o["logical"] == "woodland" and o["profile"] == "z8_9"
     )
     wood_hi = next(
         o for o in meta["outputs"] if o["logical"] == "woodland" and o["profile"] == "z14_plus"

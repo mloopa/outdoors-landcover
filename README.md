@@ -10,6 +10,9 @@ Global OpenStreetMap landcover ingestion for the Outdoors map. Replaces the Euro
 - Geofabrik extract provider with download cache and offline/local modes
 - Copernicus Land Monitoring Service High Resolution Layers for Europe (10 m forest type, grassland, crop types) fetched in parallel with OSM when they are finer than OSM generalisation
 - Version-controlled OSM tag mappings and zoom generalisation profiles
+- Below zoom 11: dissolve, gap closing, thin-part removal, hole filling and minimum-area filtering (see [`docs/landcover.md`](docs/landcover.md#generalisation))
+- Below zoom 11: dissolve, gap closing, thin-part removal, hole filling and minimum-area filtering (see [`docs/landcover.md`](docs/landcover.md#generalisation))
+- Below zoom 11: dissolve, gap closing, thin-part removal, hole filling and minimum-area filtering (see [`docs/landcover.md`](docs/landcover.md#generalisation))
 - Priority rules to avoid duplicate rendering across overlapping tags
 - Chunked, resumable global processing with bounded concurrency
 - GeoPackage layer outputs + JSON metadata + OSM attribution file
@@ -77,7 +80,7 @@ src/outdoors_landcover/
   extract/               # GeoJSON / GPKG / OSM XML / PBF readers
   mapping/               # Tag classification + forest_type
   transform/             # Geometry repair, geodesic area, stable ids
-  generalise.py          # Zoom-dependent simplify / filter / dissolve
+  generalise.py          # Zoom-dependent simplify / filter / dissolve / smoothing / smoothing / smoothing
   pipeline.py            # Orchestration, resume, merge/dedupe
   output.py              # GPKG writers + metadata / attribution
 ```
@@ -104,7 +107,7 @@ Duplicate geometries at regional boundaries are removed via stable content hashe
 | vineyard | `landuse=vineyard` | `landuse`, `name` | 11+ |
 | crop | `landuse=farmland/farm/cropland` | `landcover=crop` | 0–9 |
 | grass | `landuse=grass/meadow/village_green`, `natural=grassland` | `landcover=grass` | 0–9 |
-| woodland | `natural=wood`, `landuse=forest` | `forest_type`, `name` | 8–11, 11–14, 14+ |
+| woodland | `natural=wood`, `landuse=forest` | `forest_type`, `name` (z11+) | 8–9, 10, 11–13, 14+ |
 | woodland_point | wood/forest **nodes** + large-polygon centroids | `forest_type` | 11+ |
 
 **Not treated as crop:** `orchard` and `vineyard` are dedicated layers; `plant_nursery` remains unmapped.
@@ -123,7 +126,7 @@ For European extracts, OSM ingest runs **in parallel** with Copernicus Land Moni
 | grass | `clms_vlcc_grassland_europe_10m_yearly_v1` | 1 grassland |
 | crop | `clms_vlcc_crop-types_europe_10m_yearly_v1` | crop type codes (wheat, maize, …) |
 
-CLMS is used for a zoom profile when **10 m is finer than that profile's OSM simplify tolerance**. In practice: crop/grass (z0–9) and woodland z8–14 come from CLMS; woodland z14+, beach, sand, marsh, park, orchard and vineyard stay OSM.
+CLMS is used for a zoom profile when **10 m is finer than that profile's OSM simplify tolerance**. In practice: crop/grass (z0–9) and woodland z8–13 come from CLMS; woodland z14+, beach, sand, marsh, park, orchard and vineyard stay OSM.
 
 Live tile download uses the Copernicus Data Space catalogue (`OUTDOORS_CDSE_USERNAME` / `OUTDOORS_CDSE_PASSWORD`). Offline runs skip CLMS unless `--clms-local-root` points at GeoTIFF/COG files. CORINE Land Cover is not downloaded.
 

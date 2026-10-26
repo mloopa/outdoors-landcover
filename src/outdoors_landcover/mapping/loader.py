@@ -62,6 +62,22 @@ class GeneralisationProfile:
     simplify_tolerance_m: float
     dissolve_same_attributes: bool
     repair: bool
+    # Attribute columns to dissolve on; [] merges everything into one group.
+    # None falls back to dissolve_same_attributes behaviour.
+    dissolve_by: list[str] | None = None
+    close_gap_m: float = 0.0
+    open_width_m: float = 0.0
+    fill_holes_below_m2: float = 0.0
+    tile_size_m: float = 100_000.0
+
+    @property
+    def uses_area_generalisation(self) -> bool:
+        return (
+            self.dissolve_by is not None
+            or self.close_gap_m > 0
+            or self.open_width_m > 0
+            or self.fill_holes_below_m2 > 0
+        )
 
 
 @dataclass
@@ -144,6 +160,13 @@ def load_generalisation(path: Path) -> GeneralisationConfig:
             simplify_tolerance_m=float(raw.get("simplify_tolerance_m") or 0),
             dissolve_same_attributes=bool(raw.get("dissolve_same_attributes", False)),
             repair=bool(raw.get("repair", True)),
+            dissolve_by=(
+                None if raw.get("dissolve_by") is None else [str(c) for c in raw["dissolve_by"]]
+            ),
+            close_gap_m=float(raw.get("close_gap_m") or 0),
+            open_width_m=float(raw.get("open_width_m") or 0),
+            fill_holes_below_m2=float(raw.get("fill_holes_below_m2") or 0),
+            tile_size_m=float(raw.get("tile_size_m") or 100_000),
         )
     return GeneralisationConfig(
         version=int(data.get("version") or 1),
